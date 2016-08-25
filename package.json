@@ -1,5 +1,5 @@
 {
-  "name": "passport-cas",
+  "name": "koa-passport-cas",
   "version": "0.1.0",
   "description": "Cas authentication strategies for Passport.",
   "main": "index.js",
@@ -11,7 +11,8 @@
   "keywords": [
     "passport",
     "auth",
-    "cas"
+    "cas",
+    "koa"
   ],
   "author": "不会飞的羊",
   "license": "MIT",
