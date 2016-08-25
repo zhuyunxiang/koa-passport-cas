@@ -158,19 +158,12 @@ Strategy.prototype.authenticate = function (req, options) {
 
     var service = this.service(req);
 
-    var ticket = req.param('ticket');
+    var ticket = (req.url && url.parse(req.url, true).query && url.parse(req.url, true).query.ticket)?url.parse(req.url, true).query.ticket: null;
+
     if (!ticket) {
         var redirectURL = url.parse(this.ssoBase + '/login', true);
-
-        redirectURL.query.service = service;
-        // copy loginParams in login query
-        for (var property in options.loginParams ) {
-            var loginParam = options.loginParams[property];
-            if (loginParam) {
-                redirectURL.query[property] = loginParam;
-            }
-        }
-        return this.redirect(url.format(redirectURL));
+        redirectURL = redirectURL.href+'?service=' + service;
+        return this.redirect(redirectURL);
     }
 
     var self = this;
